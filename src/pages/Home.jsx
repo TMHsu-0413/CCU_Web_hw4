@@ -1,10 +1,17 @@
 import React from "react";
-import Alert from "../components/Alert";
+import Header from "../components/Header";
 import axios from "axios";
-import { wait } from "@testing-library/user-event/dist/utils";
+import Footer from "../components/Footer";
+import Main from "../components/Main";
 
 const Home = () => {
-
+  return (
+    <div className="h-screen w-screen">
+      <Header />
+      <Main />
+      <Footer />
+    </div>
+  )
 }
 
 export default Home;
