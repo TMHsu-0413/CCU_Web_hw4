@@ -25,6 +25,8 @@ const Header = () => {
   }
 
   const handleLogout = () => {
+    cookies.remove('ID',{path : "/hw4"})
+    cookies.remove('Name', {path: "/hw4"})
     Navigate('/hw4/Logout')
   }
 
