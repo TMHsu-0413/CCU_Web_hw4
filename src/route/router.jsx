@@ -3,6 +3,7 @@ import { Route, createBrowserRouter, createRoutesFromElements } from 'react-rout
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Home from "../pages/Home";
+import Logout from "../pages/Logout";
 
 
 const router = createBrowserRouter(
@@ -11,6 +12,7 @@ const router = createBrowserRouter(
       <Route index element={<Login />} />
       <Route path="Reg" element={<Register />} />
       <Route path="Home" element={<Home />} />
+      <Route path="Logout" element={<Logout />} />
     </Route>
   )
 )

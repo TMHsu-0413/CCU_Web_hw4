@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useRef, useState } from "react";
-//import { Form, Button, Alert } from 'react-bootstrap';
 import { Form, Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import Cookies from "universal-cookie";
@@ -32,16 +31,16 @@ const Login = () => {
       if (valid.data.length === 1) {
         cookies.set('ID', valid.data[0]["ID"]);
         cookies.set('Name', valid.data[0]["Name"]);
-        Alert('Login Success!',"Login Success!",true)
+        Alert('Login Success!', "Login Success!", true)
         Navigate("/hw4/Home")
       }
       else {
-        Alert("Login errors!","Email or password is wrong",false)
+        Alert("Login errors!", "Email or password is wrong", false)
       }
     }
 
     if (sql_inj(user) || sql_inj(password)) {
-      Alert("Login errors!","SQL injection problems.",false)
+      Alert("Login errors!", "SQL injection problems.", false)
     }
     foundUser()
   }
