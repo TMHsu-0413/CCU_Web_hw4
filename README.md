@@ -9,3 +9,7 @@
 ## back-end
 - PHP
 - PHPMailer  (need to clone after deploy to server)
+```
+cd api
+git clone https://github.com/PHPMailer/PHPMailer.git
+```
