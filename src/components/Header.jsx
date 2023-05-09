@@ -31,7 +31,7 @@ const Header = () => {
   }
 
   return (
-    <div className="h-2/3 relative flex justify-center">
+    <div className="h-2/3 relative flex justify-center" id="Header">
       <div className="bg-[url('image/background1.jpg')] bg-center bg-cover bg-no-repeat h-100 w-100 absolute z-0"></div>
       <div className="rounded bg-transparent self-center z-20 flex flex-col justify-center items-center text-white gap-2">
         <h2 className="font-bold text-8xl">Weather</h2>

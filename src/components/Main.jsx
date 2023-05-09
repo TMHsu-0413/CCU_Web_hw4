@@ -1,12 +1,16 @@
 import React, { useRef, useState } from "react";
+import Cookies from "universal-cookie";
 import Alert from "./Alert";
 import axios from "axios";
+import html2canvas from "html2canvas";
 import "./Main.css"
 
 const Main = () => {
   const inputRef = useRef();
   const [weather, setWeather] = useState([])
   const [five_day_weathers, setFive_day] = useState([])
+  const cookies = new Cookies()
+  const ID = cookies.get('ID'), name = cookies.get('Name')
   const handleSearch = async () => {
     const sql_inj = (word) => {
       return word.includes('*') || word.includes('-') || word.includes('/');
@@ -65,6 +69,21 @@ const Main = () => {
       five_day_weather_data.push(cur_data)
     }
     setFive_day(five_day_weather_data)
+
+    res = await axios.get(process.env.REACT_APP_API + 'checkEmail.php', {
+      params: {
+        ID: ID,
+        name: name
+      }
+    })
+    let content = document.getElementById('weather_table').innerHTML;
+    if (res.data[0].getMail === '1') {
+      axios.post(process.env.REACT_APP_API + 'email.php', {
+        ID: ID,
+        name: name,
+        content: content
+      })
+    }
   }
 
   const handleKeydown = (e) => {
@@ -85,12 +104,12 @@ const Main = () => {
           weather.length !== 0 &&
           <>
             <div className="py-4 bg-green-200 text-center w-full text-2xl">
-              <p>The weather in Taipei is currently <span className="text-rose-700">{weather[0]}</span></p>
+              <p>The weather in {inputRef.current.value} is currently <span className="text-rose-700">{weather[0]}</span></p>
               <p>The temperature is <span className="text-rose-700">{weather[1]}&#176;C</span></p>
               <p>Humidity is <span className="text-rose-700">{weather[2]}</span></p>
               <p>Wind speed is <span className="text-rose-700">{weather[3]}mph</span></p>
             </div>
-            <table className="w-full text-center" border="1">
+            <table className="w-full text-center" border="1" id="weather_table">
               <tr>
                 <th></th>
                 <th>時間</th>
@@ -102,10 +121,10 @@ const Main = () => {
                 <th>風速</th>
               </tr>
               {
-                five_day_weathers.map((data) => {
+                five_day_weathers.map((data, idx) => {
                   const src = "https://openweathermap.org/img/wn/" + data.icon + ".png"
                   return (
-                    <tr>
+                    <tr key={idx}>
                       <td align="center"><img src={src} alt="img" width="70" /></td>
                       <td>{data.time}</td>
                       <td>{inputRef.current.value}</td>

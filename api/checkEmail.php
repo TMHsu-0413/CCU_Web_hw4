@@ -10,12 +10,12 @@
     $id = $_GET["ID"];
     $name = $_GET["name"];
 
-    $sql = "SELECT COUNT(*) as Size FROM hw4_User WHERE ID=$id and Name='$name'";
+    $sql = "SELECT getMail FROM hw4_User WHERE ID=$id and Name='$name'";
     $result = $conn->query($sql);
     $a=array();
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
-          $b=array("Size"=>$row["Size"]);
+          $b=array("getMail"=>$row["getMail"]);
           array_push($a,$b);
         }
     }

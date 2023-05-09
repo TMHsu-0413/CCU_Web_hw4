@@ -5,7 +5,7 @@ import Main from "../components/Main";
 
 const Home = () => {
   return (
-    <div className="h-screen w-screen">
+    <div className="h-screen w-screen" id="Home">
       <Header />
       <Main />
       <Footer />
