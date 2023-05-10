@@ -7,9 +7,9 @@
   if($_SERVER['REQUEST_METHOD'] == 'GET'){
     require "connectDB.php";
 
-    $name = $_GET["Name"];
+    $email = $_GET["email"];
 
-    $sql = "SELECT Count(Name) as Size FROM hw4_User WHERE Name='$name'";
+    $sql = "SELECT Count(Name) as Size FROM hw4_User WHERE Email='$email'";
     $result = $conn->query($sql);
     $a=array();
     if ($result->num_rows > 0) {

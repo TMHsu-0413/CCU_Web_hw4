@@ -37,7 +37,7 @@ const Register = () => {
     }
 
     async function duplicate() {
-      let count = await axios.get(process.env.REACT_APP_API + 'getUserNumberbyName.php', { params: { "Name": user } })
+      let count = await axios.get(process.env.REACT_APP_API + 'getUserNumberbyEmail.php', { params: { "email": email } })
       let data = parseInt(count.data[0]["Size"])
       return data >= 1;
     }
@@ -52,7 +52,7 @@ const Register = () => {
       Alert('Registeration errors!', "SQL injection Problem.", false)
     }
     else if (await duplicate()) {
-      Alert('Registeration errors!', "The username already exists.", false)
+      Alert('Registeration errors!', "The email already exists.", false)
     }
     // pass all constraints
     else {
