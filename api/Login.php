@@ -9,10 +9,10 @@
     $input = file_get_contents('php://input');
     $input=json_decode($input);
 
-    $name = $input->name;
+    $email = $input->email;
     $password = $input->password;
 
-    $sql = "SELECT ID,Name FROM hw4_User WHERE Name='$name' and Password='$password'";
+    $sql = "SELECT ID,Name FROM hw4_User WHERE Email='$email' and Password='$password'";
     $result = $conn->query($sql);
     $a=array();
     if ($result->num_rows > 0) {

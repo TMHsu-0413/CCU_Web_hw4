@@ -7,13 +7,13 @@ import { SHA3 } from 'crypto-js';
 import Alert from "../components/Alert";
 
 const Login = () => {
-  const userRef = useRef();
+  const emailRef = useRef();
   const passwordRef = useRef();
   const Navigate = useNavigate();
   const cookies = new Cookies();
   const handleSubmit = (e) => {
     e.preventDefault();
-    var user = userRef.current.value
+    var email = emailRef.current.value
     var password = passwordRef.current.value
 
     const sql_inj = (word) => {
@@ -24,7 +24,7 @@ const Login = () => {
       var encrypted_password = SHA3(password).toString()
 
       let valid = await axios.post(process.env.REACT_APP_API + 'Login.php', {
-        name: user,
+        email: email,
         password: encrypted_password
       })
 
@@ -39,7 +39,7 @@ const Login = () => {
       }
     }
 
-    if (sql_inj(user) || sql_inj(password)) {
+    if (sql_inj(email) || sql_inj(password)) {
       Alert("Login errors!", "SQL injection problems.", false)
     }
     foundUser()
@@ -54,8 +54,8 @@ const Login = () => {
           <h2>Login</h2>
           <Form className="flex flex-col justify-center items-center" onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formUser">
-              <Form.Label>User</Form.Label>
-              <Form.Control required ref={userRef} className="max-w-xl" type="Text" placeholder="User" />
+              <Form.Label>Email</Form.Label>
+              <Form.Control required ref={emailRef} className="max-w-xl" type="Text" placeholder="Email" />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formPassword">
               <Form.Label>Password</Form.Label>
