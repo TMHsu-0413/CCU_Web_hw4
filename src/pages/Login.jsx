@@ -22,7 +22,7 @@ const Login = () => {
 
     async function foundUser() {
       var encrypted_password = SHA3(password).toString()
-
+      
       let valid = await axios.post(process.env.REACT_APP_API + 'Login.php', {
         email: email,
         password: encrypted_password

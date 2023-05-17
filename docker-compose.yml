@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+  db:
+    image: "mysql"
+    environment:
+      MYSQL_DATABASE: 611410086
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - User:/var/lib/mysql
+
+  phpmyadmin:
+    image: "phpmyadmin/phpmyadmin"
+    ports:
+      - "8080:80"
+    links:
+      - db
+
+volumes:
+  User:
+    external: true
